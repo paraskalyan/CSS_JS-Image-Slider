@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .slider {
+            position: relative;
+            width: 100vw;
+            height: 70vh;
+            border: 2px solid black;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: 400vw;
+            height: 100%;
+            background-color: red;
+            transition: all 0.5s ease-in;
+        }
+
+        .item {
+            height: 100%;
+            width: 100vw;
+            object-fit: cover;
+        }
+
+        .buttons {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            bottom: 20px;
+            width: 100px;
+            display: flex;
+            column-gap: 10px;
+            z-index: 999;
+        }
+
+        .icon {
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: transparent;
+            border: 1px solid white;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <div class="container">
+            <img class="item" src="https://cdn.pixabay.com/photo/2016/07/02/12/21/eclipse-1492818_960_720.jpg" alt="phot">
+            <img class="item" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="phot">
+            <img class="item" src="https://cdn.pixabay.com/photo/2016/05/01/21/20/earth-1365995_960_720.jpg" alt="phot">
+            <img class="item" src="https://cdn.pixabay.com/photo/2015/04/23/21/59/tree-736877_960_720.jpg" alt="phot">
+        </div>
+        <div class="buttons">
+            <button class="icon" onclick="imageSlider(this.name)" name="prev"><</button>
+            <button class="icon" onclick="imageSlider(this.name)" name="next">></button>
+        </div>
+    </div>
+    <script>
+        var i = 0;
+        function imageSlider(name) {
+            if (name === 'next') { i += 1; }
+            else { i -= 1; }
+            if (i == -1) { i = 3; }
+            if (i == 4) { i = 0; }
+            var val = i * (-100);
+            var cont = document.querySelector('.container');
+            cont.style.transform = `translate(${val}vw)`;
+        }
+    </script>
+</body>
+
+</html>
